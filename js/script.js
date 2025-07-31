@@ -1,5 +1,57 @@
 const header = document.querySelector("header");
 
+// Active navigation highlighting
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.navlist a');
+
+function updateActiveNav() {
+	const scrollPos = window.scrollY + 100; // Offset for header height
+	
+	sections.forEach(section => {
+		const sectionTop = section.offsetTop;
+		const sectionHeight = section.offsetHeight;
+		const sectionId = section.getAttribute('id');
+		
+		if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+			// Remove active class from all nav links
+			navLinks.forEach(link => {
+				link.classList.remove('active');
+			});
+			
+			// Add active class to current section's nav link
+			const activeLink = document.querySelector(`.navlist a[href="#${sectionId}"]`);
+			if (activeLink) {
+				activeLink.classList.add('active');
+			}
+		}
+	});
+}
+
+// Update active nav on scroll
+window.addEventListener('scroll', updateActiveNav);
+
+// Update active nav on page load
+document.addEventListener('DOMContentLoaded', updateActiveNav);
+
+// Smooth scrolling for navigation links
+navLinks.forEach(link => {
+	link.addEventListener('click', function(e) {
+		e.preventDefault();
+		
+		const targetId = this.getAttribute('href');
+		const targetSection = document.querySelector(targetId);
+		
+		if (targetSection) {
+			const headerHeight = header.offsetHeight;
+			const targetPosition = targetSection.offsetTop - headerHeight;
+			
+			window.scrollTo({
+				top: targetPosition,
+				behavior: 'smooth'
+			});
+		}
+	});
+});
 
 var about = document.getElementById("myabout")
 about.addEventListener("click", function () {
@@ -92,3 +144,35 @@ sr.reveal('.home-text', { delay: 350, origin: 'left' })
 sr.reveal('.home-img', { delay: 350, origin: 'right' })
 
 sr.reveal('.sub-service,.about,.portfolio,.service,.cta,.contact', { delay: 200, origin: 'bottom' })
+
+// --- Mobile Menu Functionality ---
+const menuIcon = document.getElementById('menu-icon');
+const closeMenuBtn = document.getElementById('close-menu');
+const navContainer = document.querySelector('.navlist-container');
+const navOverlay = document.getElementById('nav-overlay');
+
+function openMenu() {
+	navContainer.classList.add('active');
+	navOverlay.classList.add('active');
+	document.body.style.overflow = 'hidden';
+	menuIcon.classList.add('active');
+}
+function closeMenu() {
+	navContainer.classList.remove('active');
+	navOverlay.classList.remove('active');
+	document.body.style.overflow = '';
+	menuIcon.classList.remove('active');
+}
+
+if (menuIcon && navContainer && navOverlay && closeMenuBtn) {
+	menuIcon.addEventListener('click', openMenu);
+	closeMenuBtn.addEventListener('click', closeMenu);
+	navOverlay.addEventListener('click', closeMenu);
+	// Close menu when a nav link is clicked (on mobile)
+	document.querySelectorAll('.navlist a').forEach(link => {
+		link.addEventListener('click', () => {
+			if (window.innerWidth <= 970) closeMenu();
+		});
+	});
+}
+// --- End Mobile Menu Functionality ---
