@@ -1040,8 +1040,8 @@ section:not(:last-child)::after {
 }
 
 .sub-img img, .sub-img svg {
-	width: 64px;
-	height: 64px;
+	width: 250px;
+	height: 100px;
 	object-fit: contain;
 	margin-bottom: 10px;
 	filter: drop-shadow(0 4px 8px rgba(0,0,0,0.08));
@@ -2247,7 +2247,7 @@ section:not(:last-child)::after {
 }
 
 /* Back to top button */
-.top{
+.top {
 	position: fixed;
 	bottom: 30px;
 	right: 30px;
@@ -2255,9 +2255,28 @@ section:not(:last-child)::after {
 	opacity: 1;
 	visibility: visible;
 	transition: opacity 0.3s, visibility 0.3s;
+	background: rgba(118, 75, 162, 0.18); /* soft purple background */
+	border-radius: 50%;
+	width: 44px;
+	height: 44px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 0 2px 8px rgba(102,126,234,0.10);
 }
 
-/* Hide the button when at top */
+.top .arrow-up {
+	color: #764ba2;
+	font-size: 1.6rem;
+	font-weight: bold;
+	transition: color 0.2s;
+}
+
+.top:hover {
+	background: #fff;
+	box-shadow: 0 4px 16px rgba(118,75,162,0.18);
+}
+
 .top.hide {
 	opacity: 0;
 	visibility: hidden;
