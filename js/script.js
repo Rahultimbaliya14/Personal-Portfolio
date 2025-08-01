@@ -176,3 +176,16 @@ if (menuIcon && navContainer && navOverlay && closeMenuBtn) {
 	});
 }
 // --- End Mobile Menu Functionality ---
+
+// --- Back to Top Button Functionality ---
+const backToTopBtn = document.querySelector('.top');
+
+// Smooth scroll to top when button is clicked
+backToTopBtn.addEventListener('click', function(e) {
+	e.preventDefault();
+	window.scrollTo({
+		top: 0,
+		behavior: 'smooth'
+	});
+});
+// --- End Back to Top Button Functionality ---
