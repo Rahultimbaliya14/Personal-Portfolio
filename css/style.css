@@ -2169,7 +2169,49 @@ section:not(:last-child)::after {
 	align-items: stretch;
 	margin-top: 3rem;
 }
+/* Education exp-details and exp-info styles to match experience section */
+.education-item .exp-details {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	margin-bottom: 20px;
+	position: relative;
+	z-index: 1;
+}
 
+.education-item .exp-info {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin-bottom: 8px;
+	transition: var(--transition);
+}
+
+.education-item .exp-info:last-child {
+	margin-bottom: 0;
+}
+
+.education-item .exp-info i {
+	font-size: 1.1rem;
+	color: var(--main-color);
+	background: rgba(102, 126, 234, 0.1);
+	padding: 8px;
+	border-radius: 50%;
+	transition: var(--transition);
+	animation: iconPulse 2s infinite;
+}
+
+.education-item .exp-info:hover i {
+	transform: scale(1.1);
+	background: rgba(102, 126, 234, 0.2);
+	box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.education-item .exp-info span {
+	font-size: 0.95rem;
+	color: var(--secound-color);
+	font-weight: 500;
+}
 .wrap{
 	background: var(--card-bg);
 	box-shadow: var(--card-shadow);
