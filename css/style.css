@@ -2273,6 +2273,228 @@ section:not(:last-child)::after {
 	color: var(--accent-color);
 }
 
+/* Email Modal Popup Styles */
+.modal-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.6);
+	backdrop-filter: blur(10px);
+	z-index: 10000;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	opacity: 0;
+	visibility: hidden;
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-overlay.show {
+	opacity: 1;
+	visibility: visible;
+}
+
+.modal-container {
+	position: relative;
+	max-width: 500px;
+	width: 90%;
+	max-height: 90vh;
+	overflow-y: auto;
+	transform: scale(0.8) translateY(50px);
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-overlay.show .modal-container {
+	transform: scale(1) translateY(0);
+}
+
+.modal-content {
+	background: var(--card-bg);
+	border-radius: var(--border-radius);
+	padding: 40px;
+	box-shadow: var(--card-shadow);
+	border: 1px solid rgba(255, 255, 255, 0.3);
+	position: relative;
+	overflow: hidden;
+	text-align: center;
+}
+
+.modal-content::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 4px;
+	background: var(--gradient-primary);
+}
+
+.modal-content h3 {
+	font-size: 2rem;
+	font-weight: 700;
+	margin-bottom: 15px;
+	background: var(--gradient-primary);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+	animation: titleGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes titleGlow {
+	0% { filter: brightness(1); }
+	100% { filter: brightness(1.2); }
+}
+
+.modal-content p {
+	color: var(--secound-color);
+	font-size: var(--p-font);
+	line-height: 1.6;
+	margin-bottom: 30px;
+	font-weight: 400;
+}
+
+.email-form {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+#emailInput {
+	width: 100%;
+	padding: 15px 20px;
+	border: 2px solid rgba(102, 126, 234, 0.2);
+	border-radius: 12px;
+	font-size: 1rem;
+	font-family: 'Jost', sans-serif;
+	background: rgba(255, 255, 255, 0.9);
+	color: var(--text-color);
+	transition: var(--transition);
+	outline: none;
+}
+
+#emailInput:focus {
+	border-color: var(--main-color);
+	box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+	background: white;
+}
+
+#emailInput::placeholder {
+	color: var(--secound-color);
+	opacity: 0.7;
+}
+
+.modal-buttons {
+	display: flex;
+	gap: 15px;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.modal-btn {
+	padding: 12px 30px;
+	border: none;
+	border-radius: 25px;
+	font-size: 1rem;
+	font-weight: 600;
+	font-family: 'Jost', sans-serif;
+	cursor: pointer;
+	transition: var(--transition);
+	position: relative;
+	overflow: hidden;
+	min-width: 120px;
+}
+
+.send-btn {
+	background: var(--gradient-primary);
+	color: white;
+	box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.send-btn:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+.send-btn:active {
+	transform: translateY(0);
+}
+
+.cancel-btn {
+	background: rgba(113, 128, 150, 0.1);
+	color: var(--secound-color);
+	border: 2px solid rgba(113, 128, 150, 0.2);
+}
+
+.cancel-btn:hover {
+	background: rgba(113, 128, 150, 0.2);
+	transform: translateY(-2px);
+	box-shadow: 0 4px 15px rgba(113, 128, 150, 0.2);
+}
+
+.cancel-btn:active {
+	transform: translateY(0);
+}
+
+/* Modal button animations */
+.modal-btn::before {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 0;
+	height: 0;
+	background: rgba(255, 255, 255, 0.2);
+	border-radius: 50%;
+	transform: translate(-50%, -50%);
+	transition: width 0.3s, height 0.3s;
+}
+
+.modal-btn:hover::before {
+	width: 300px;
+	height: 300px;
+}
+
+/* Responsive design for modal */
+@media (max-width: 600px) {
+	.modal-content {
+		padding: 30px 20px;
+	}
+	
+	.modal-content h3 {
+		font-size: 1.6rem;
+	}
+	
+	.modal-buttons {
+		flex-direction: column;
+		align-items: center;
+	}
+	
+	.modal-btn {
+		width: 100%;
+		max-width: 200px;
+	}
+}
+
+/* Animation for modal appearance */
+@keyframes modalFadeIn {
+	0% {
+		opacity: 0;
+		transform: scale(0.8) translateY(50px);
+	}
+	100% {
+		opacity: 1;
+		transform: scale(1) translateY(0);
+	}
+}
+
+.modal-overlay.show .modal-content {
+	animation: modalFadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* End of CSS */
+
 /* Footer */
 .ends{
 	text-align: center;
@@ -2765,4 +2987,147 @@ section:not(:last-child)::after {
 	0%, 100% { transform: translateX(-50%) translateY(0);}
 	30% { transform: translateX(-50%) translateY(-4px);}
 	60% { transform: translateX(-50%) translateY(2px);}
+}
+
+/* Email Input Error Styling */
+.error-input {
+	border: 2px solid #ff4757 !important;
+	background-color: rgba(255, 71, 87, 0.1) !important;
+	box-shadow: 0 0 10px rgba(255, 71, 87, 0.3) !important;
+	color: #ff4757 !important;
+}
+
+.error-input::placeholder {
+	color: rgba(255, 71, 87, 0.7) !important;
+}
+
+/* Shake Animation for Error Input */
+.shake-animation {
+	animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+	0%, 100% { transform: translateX(0); }
+	10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+	20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+/* Custom Alert Popup Styles */
+.custom-alert {
+	position: fixed;
+	top: 20px;
+	right: 20px;
+	z-index: 10000;
+	max-width: 400px;
+	min-width: 300px;
+	border-radius: 12px;
+	box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+	backdrop-filter: blur(10px);
+	transform: translateX(100%);
+	opacity: 0;
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	pointer-events: none;
+}
+
+.custom-alert.show {
+	transform: translateX(0);
+	opacity: 1;
+	pointer-events: auto;
+}
+
+.alert-content {
+	display: flex;
+	align-items: center;
+	padding: 16px 20px;
+	gap: 12px;
+	position: relative;
+	border-radius: 12px;
+	background: rgba(255, 255, 255, 0.95);
+	border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.alert-error .alert-content {
+	background: linear-gradient(135deg, rgba(255, 71, 87, 0.1) 0%, rgba(255, 71, 87, 0.05) 100%);
+	border-left: 4px solid #ff4757;
+	color: #d63031;
+}
+
+.alert-success .alert-content {
+	background: linear-gradient(135deg, rgba(0, 184, 148, 0.1) 0%, rgba(0, 184, 148, 0.05) 100%);
+	border-left: 4px solid #00b894;
+	color: #00b894;
+}
+
+.alert-info .alert-content {
+	background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(102, 126, 234, 0.05) 100%);
+	border-left: 4px solid #667eea;
+	color: #667eea;
+}
+
+.alert-icon {
+	font-size: 24px;
+	flex-shrink: 0;
+	animation: alertIconPulse 2s ease-in-out infinite;
+}
+
+@keyframes alertIconPulse {
+	0%, 100% { transform: scale(1); }
+	50% { transform: scale(1.1); }
+}
+
+.alert-message {
+	flex: 1;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 1.4;
+	margin: 0;
+}
+
+.alert-close {
+	position: absolute;
+	top: 8px;
+	right: 8px;
+	background: none;
+	border: none;
+	font-size: 20px;
+	color: inherit;
+	cursor: pointer;
+	width: 24px;
+	height: 24px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50%;
+	transition: all 0.2s ease;
+	opacity: 0.7;
+}
+
+.alert-close:hover {
+	opacity: 1;
+	background: rgba(0, 0, 0, 0.1);
+	transform: scale(1.1);
+}
+
+/* Mobile responsive for alerts */
+@media (max-width: 480px) {
+	.custom-alert {
+		top: 10px;
+		right: 10px;
+		left: 10px;
+		max-width: none;
+		min-width: auto;
+	}
+	
+	.alert-content {
+		padding: 14px 16px;
+		gap: 10px;
+	}
+	
+	.alert-message {
+		font-size: 13px;
+	}
+	
+	.alert-icon {
+		font-size: 20px;
+	}
 }
