@@ -144,38 +144,17 @@ async function handleEmailSubmit() {
 		console.log('Sending email request to API:', { email });
 		
 		// Make API call to send email
-		// First try with CORS, if it fails, try with no-cors as fallback
-		let response;
-		try {
-			response = await fetch('https://node-rahul-timbaliya.vercel.app/api/mail/send', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-					'Accept': 'application/json',
-				},
-				body: JSON.stringify({
-					email: email
-				}),
-				mode: 'cors',
-			});
-		} catch (corsError) {
-			response = await fetch('https://node-rahul-timbaliya.vercel.app/api/mail/send', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify({
-					email: email
-				}),
-				mode: 'no-cors',
-			});
-			
-			showCustomAlert('Email sent!', 'success');
-			hideEmailModal();
-			emailInput.value = '';
-			removeEmailError();
-			return;
-		}
+		const response = await fetch('https://node-rahul-timbaliya.vercel.app/api/mail/send', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				'Accept': 'application/json',
+			},
+			body: JSON.stringify({
+				email: email
+			}),
+			mode: 'cors',
+		});
 		
 		if (response.ok) {
 			// Try to get response data
