@@ -2668,11 +2668,15 @@ section:not(:last-child)::after {
 		grid-template-columns: 1fr;
 		min-height: 120vh;
 		grid-gap: 2rem;
-		text-align: center;
+		text-align: left;
 		padding-top: 60px; /* Reduced top padding since header is hidden */
 	}
 	.home-text{
 		padding-top: 40px; /* Reduced padding since header is hidden */
+		text-align: left !important; /* Force text to be left-aligned on mobile */
+		display: flex !important;
+		flex-direction: column !important;
+		align-items: flex-start !important;
 	}
 	.home-img iframe{
 		width: 100%;
@@ -2702,6 +2706,15 @@ section:not(:last-child)::after {
 	}
 	.home-text h1{
 		font-size: 2.5rem;
+	}
+	.home-text{
+		text-align: left !important;
+		display: flex !important;
+		flex-direction: column !important;
+		align-items: flex-start !important;
+	}
+	.home{
+		text-align: left !important;
 	}
 	.social a{
 		width: 45px;

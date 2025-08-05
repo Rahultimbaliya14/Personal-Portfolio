@@ -17,8 +17,10 @@
         <!-- Sidebar -->
         <div class="sidebar" id="sidebar">
             <div class="sidebar-header">
-                <h2>Rahul Timbaliya</h2>
-                <p>Portfolio Management</p>
+                <div class="header-content">
+                    <h2>Rahul Timbaliya</h2>
+                    <p>Portfolio Management</p>
+                </div>
                 <button class="toggle-btn" id="toggleBtn">
                     <i class="fas fa-bars"></i>
                 </button>
@@ -142,6 +144,18 @@
             </div>
         </div>
     </div>
+
+    <!-- Admin Modal Popup -->
+    <div class="admin-modal-overlay" id="adminModalOverlay">
+        <div class="admin-modal-container" id="adminModalContainer">
+            <div class="admin-modal-content" id="adminModalContent">
+                <!-- Dynamic content will be injected here -->
+            </div>
+            <button class="admin-modal-close" id="adminModalClose" aria-label="Close Modal">&times;</button>
+        </div>
+    </div>
+    <!-- Toast Notification Container -->
+    <div id="adminToastContainer"></div>
 </body>
 <script src="js/script.js"></script>
 </html>
