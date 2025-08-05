@@ -291,7 +291,7 @@ function handleEscapeKey(e) {
 function viewFeedback(id) {
     const f = sampleFeedback.find(fb => fb.id === id);
     if (!f) return;
-    
+    console.log(f)
     const content = `
         <div class="modal-header">
             <h3>View Feedback</h3>
@@ -304,7 +304,7 @@ function viewFeedback(id) {
                 </div>
                 <div class="detail-item">
                     <span class="detail-label">Date:</span>
-                    <span class="detail-value">${new Date(f.timestamp).toLocaleDateString()}</span>
+                    <span class="detail-value">${new Date(f.date).toLocaleDateString()}</span>
                 </div>
                 <div class="detail-item">
                     <span class="detail-label">Message:</span>
@@ -393,7 +393,7 @@ function viewEmail(id) {
                 </div>
                 <div class="detail-item">
                     <span class="detail-label">Date:</span>
-                    <span class="detail-value">${new Date(e.timestamp).toLocaleDateString()}</span>
+                    <span class="detail-value">${new Date(e.date).toLocaleDateString()}</span>
                 </div>
                 <div class="detail-item">
                     <span class="detail-label">Source:</span>
@@ -426,7 +426,7 @@ function deleteEmail(id) {
                 </div>
                 <div class="detail-item">
                     <span class="detail-label">Date:</span>
-                    <span class="detail-value">${new Date(e.timestamp).toLocaleDateString()}</span>
+                    <span class="detail-value">${new Date(e.date).toLocaleDateString()}</span>
                 </div>
             </div>
             <p style="color: var(--danger-color); font-weight: 600; margin-top: 15px;">This action cannot be undone.</p>
