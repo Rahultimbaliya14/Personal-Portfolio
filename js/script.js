@@ -33,6 +33,169 @@ window.addEventListener('scroll', updateActiveNav);
 // Update active nav on page load
 document.addEventListener('DOMContentLoaded', updateActiveNav);
 
+// Feedback Form Functionality
+function clearFeedbackForm() {
+	const form = document.getElementById('feedbackForm');
+	if (form) {
+		form.reset();
+		// Remove any error states
+		const inputs = form.querySelectorAll('input, textarea');
+		inputs.forEach(input => {
+			input.classList.remove('error');
+		});
+	}
+}
+
+// Handle feedback form submission
+function handleFeedbackSubmit(event) {
+	event.preventDefault();
+	
+	const form = event.target;
+	const emailInput = form.querySelector('#feedbackEmail');
+	const feedbackInput = form.querySelector('#feedbackMessage');
+	const email = emailInput.value.trim();
+	const feedback = feedbackInput.value.trim();
+	
+	// Remove previous error states
+	removeFeedbackError();
+	
+	let hasErrors = false;
+	
+	// Validate email field
+	if (!email) {
+		addFeedbackError(emailInput);
+		hasErrors = true;
+	}
+	
+	// Validate feedback field
+	if (!feedback) {
+		addFeedbackError(feedbackInput);
+		hasErrors = true;
+	}
+	
+	// Show error message if fields are empty
+	if (hasErrors) {
+		showCustomAlert('Please fill in all fields.', 'error');
+		return;
+	}
+	
+	// Validate email format
+	if (!isValidEmail(email)) {
+		addFeedbackError(emailInput);
+		showCustomAlert('Please enter a valid email address.', 'error');
+		return;
+	}
+	
+	// Submit feedback via API
+	submitFeedbackToAPI(email, feedback);
+}
+
+// Function to submit feedback to API
+async function submitFeedbackToAPI(email, feedback) {
+	try {
+		// Show loading state
+		const submitBtn = document.querySelector('.submit-btn');
+		const originalText = submitBtn.textContent;
+		submitBtn.textContent = 'Submitting...';
+		submitBtn.disabled = true;
+		
+		// Prepare the data to send
+		const feedbackData = {
+			email: email,
+			comment: feedback,
+			timestamp: new Date().toISOString(),
+		};
+		
+		// Replace this URL with your actual API endpoint
+		const API_ENDPOINT = 'https://node-rahul-timbaliya.vercel.app/api/feedback/create';
+		
+		// Make the API call
+		const response = await fetch(API_ENDPOINT, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				'Accept': 'application/json'
+			},
+			body: JSON.stringify(feedbackData)
+		});
+		
+		// Reset button state
+		submitBtn.textContent = originalText;
+		submitBtn.disabled = false;
+		
+		// Handle response
+		if (response.ok) {
+			const result = await response.json();
+			showCustomAlert('Thank you for your feedback! I will get back to you soon.', 'success');
+			
+			// Clear form after successful submission
+			setTimeout(() => {
+				clearFeedbackForm();
+			}, 2000);
+		} else {
+			// Handle API error response
+			const errorData = await response.json().catch(() => ({ message: 'Unknown error' }));
+			showCustomAlert(`Failed to submit feedback: ${errorData.message || 'Please try again later.'}`, 'error');
+		}
+		
+	} catch (error) {
+		// Handle network or other errors
+		console.error('Error submitting feedback:', error);
+		
+		// Reset button state
+		const submitBtn = document.querySelector('.submit-btn');
+		submitBtn.textContent = 'Submit Feedback';
+		submitBtn.disabled = false;
+		
+		// Show error message
+		showCustomAlert('Failed to submit feedback. Please check your internet connection and try again.', 'error');
+	}
+}
+
+// Function to add red highlighting to feedback form inputs
+function addFeedbackError(input) {
+	if (input) {
+		input.classList.add('error-input');
+		// Add shake animation
+		input.classList.add('shake-animation');
+		// Remove shake animation after it completes
+		setTimeout(() => {
+			input.classList.remove('shake-animation');
+		}, 500);
+	}
+}
+
+// Function to remove red highlighting from feedback form inputs
+function removeFeedbackError() {
+	const feedbackForm = document.getElementById('feedbackForm');
+	if (feedbackForm) {
+		const inputs = feedbackForm.querySelectorAll('input, textarea');
+		inputs.forEach(input => {
+			input.classList.remove('error-input');
+			input.classList.remove('shake-animation');
+		});
+	}
+}
+
+// Add event listener for feedback form
+document.addEventListener('DOMContentLoaded', function() {
+	const feedbackForm = document.getElementById('feedbackForm');
+	if (feedbackForm) {
+		feedbackForm.addEventListener('submit', handleFeedbackSubmit);
+		
+		// Remove error styling when user starts typing
+		const inputs = feedbackForm.querySelectorAll('input, textarea');
+		inputs.forEach(input => {
+			input.addEventListener('input', function() {
+				if (this.classList.contains('error-input')) {
+					this.classList.remove('error-input');
+					this.classList.remove('shake-animation');
+				}
+			});
+		});
+	}
+});
+
 // Smooth scrolling for navigation links
 navLinks.forEach(link => {
 	link.addEventListener('click', function(e) {

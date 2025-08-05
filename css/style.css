@@ -3131,3 +3131,174 @@ section:not(:last-child)::after {
 		font-size: 20px;
 	}
 }
+
+/* Feedback Section */
+.feedback {
+	padding: 80px 14% 60px;
+	background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+	position: relative;
+	overflow: hidden;
+}
+
+.feedback::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="%23667eea" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+	pointer-events: none;
+}
+
+.feedback-container {
+	max-width: 800px;
+	margin: 0 auto;
+	position: relative;
+	z-index: 2;
+}
+
+.feedback-form {
+	background: var(--card-bg);
+	padding: 40px;
+	border-radius: var(--border-radius);
+	box-shadow: var(--card-shadow);
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	backdrop-filter: blur(10px);
+	transition: var(--transition);
+}
+
+.feedback-form:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 15px 40px rgba(31, 38, 135, 0.2);
+}
+
+.form-group {
+	margin-bottom: 25px;
+}
+
+.form-group label {
+	display: block;
+	margin-bottom: 8px;
+	font-weight: 600;
+	color: var(--text-color);
+	font-size: 1.1rem;
+}
+
+.form-group input,
+.form-group textarea {
+	width: 100%;
+	padding: 15px 20px;
+	border: 2px solid rgba(102, 126, 234, 0.2);
+	border-radius: 12px;
+	background: rgba(255, 255, 255, 0.8);
+	font-size: 1rem;
+	color: var(--text-color);
+	transition: var(--transition);
+	font-family: 'Jost', sans-serif;
+	resize: vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+	outline: none;
+	border-color: var(--main-color);
+	box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+	background: rgba(255, 255, 255, 0.95);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+	color: var(--secound-color);
+	opacity: 0.8;
+}
+
+.form-buttons {
+	display: flex;
+	gap: 15px;
+	justify-content: center;
+	margin-top: 30px;
+}
+
+.clear-btn {
+	background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+	color: white;
+	padding: 12px 30px;
+	border: none;
+	border-radius: 25px;
+	font-size: 1rem;
+	font-weight: 600;
+	cursor: pointer;
+	transition: var(--transition);
+	position: relative;
+	overflow: hidden;
+}
+
+.submit-btn {
+	background: var(--gradient-primary);
+	color: white;
+	padding: 12px 30px;
+	border: none;
+	border-radius: 25px;
+	font-size: 1rem;
+	font-weight: 600;
+	cursor: pointer;
+	transition: var(--transition);
+	position: relative;
+	overflow: hidden;
+}
+
+.clear-btn:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 8px 25px rgba(108, 117, 125, 0.3);
+}
+
+.submit-btn:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+}
+
+.clear-btn:active,
+.submit-btn:active {
+	transform: translateY(0);
+}
+
+/* Responsive Design for Feedback Section */
+@media (max-width: 768px) {
+	.feedback {
+		padding: 60px 8% 40px;
+	}
+	
+	.feedback-form {
+		padding: 30px 20px;
+	}
+	
+	.form-buttons {
+		flex-direction: column;
+		align-items: center;
+	}
+	
+	.clear-btn,
+	.submit-btn {
+		width: 100%;
+		max-width: 200px;
+	}
+}
+
+/* Error styling for form inputs */
+.error-input {
+	border: 2px solid #e53e3e !important;
+	box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.2) !important;
+	background: rgba(254, 226, 226, 0.8) !important;
+}
+
+/* Shake animation for validation errors */
+.shake-animation {
+	animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+	0%, 100% { transform: translateX(0); }
+	10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+	20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
