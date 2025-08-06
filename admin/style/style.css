@@ -195,6 +195,23 @@ body {
     opacity: 0;
 }
 
+/* Logout button styling */
+.menu-item.logout-item {
+    margin-top: auto;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(229, 62, 62, 0.1);
+}
+
+.menu-item.logout-item:hover {
+    background: rgba(229, 62, 62, 0.2);
+    border-left-color: var(--danger-color);
+    color: #ff6b6b;
+}
+
+.menu-item.logout-item i {
+    color: var(--danger-color);
+}
+
 /* Main Content Styles */
 .main-content {
     flex: 1;
