@@ -1,3 +1,8 @@
+// Check authentication on page load
+if (!window.authManager || !window.authManager.isAuthenticated()) {
+    window.location.href = 'login.html';
+}
+
 // Sidebar toggle functionality
 const sidebar = document.getElementById('sidebar');
 const mainContent = document.getElementById('mainContent');
@@ -32,12 +37,11 @@ let currentFeedbackPage = 1;
 let currentEmailPage = 1;
 const itemsPerPage = 5;
 
-// Fetch feedback from API
+// Fetch feedback from API with authentication
 async function appendAPIData() {
     try {
-        const response = await fetch('https://node-rahul-timbaliya.vercel.app/api/feedback/getAll', {
-            method: 'GET',
-            headers: { 'Content-Type': 'application/json' }
+        const response = await window.makeAuthenticatedRequest('https://node-rahul-timbaliya.vercel.app/api/feedback/getAll', {
+            method: 'GET'
         });
 
         if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
@@ -45,6 +49,9 @@ async function appendAPIData() {
         return apiData;
     } catch (error) {
         console.error('Failed to fetch feedback from API:', error);
+        if (error.message === 'Authentication required' || error.message === 'Session expired') {
+            return [];
+        }
         return [];
     }
 }
@@ -52,16 +59,18 @@ async function appendAPIData() {
 
 async function appendAPIDataEmail() {
     try {
-        const response = await fetch('https://node-rahul-timbaliya.vercel.app/api/mail/getAll', {
-            method: 'GET',
-            headers: { 'Content-Type': 'application/json' }
+        const response = await window.makeAuthenticatedRequest('https://node-rahul-timbaliya.vercel.app/api/mail/getAll', {
+            method: 'GET'
         });
 
         if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
         const apiData = await response.json();
         return apiData;
     } catch (error) {
-        console.error('Failed to fetch feedback from API:', error);
+        console.error('Failed to fetch emails from API:', error);
+        if (error.message === 'Authentication required' || error.message === 'Session expired') {
+            return [];
+        }
         return [];
     }
 }
@@ -351,15 +360,14 @@ function deleteFeedback(id) {
     showModal(content);
 }
 
-function confirmDeleteFeedback(id) {
-    fetch(`https://node-rahul-timbaliya.vercel.app/api/feedback/delete/${id}`, {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-    .then(response => {
+async function confirmDeleteFeedback(id) {
+    try {
+        const response = await window.makeAuthenticatedRequest(`https://node-rahul-timbaliya.vercel.app/api/feedback/delete/${id}`, {
+            method: 'DELETE'
+        });
+        
         if (!response.ok) throw new Error('Failed to delete feedback.');
+        
         // Remove from local data and update UI
         const index = sampleFeedback.findIndex(f => f.id === id);
         if (index > -1) {
@@ -370,11 +378,10 @@ function confirmDeleteFeedback(id) {
         }
         hideModal();
         showToast('Feedback deleted successfully!', 'success');
-    })
-    .catch(error => {
+    } catch (error) {
         hideModal();
         showToast('Error: ' + error.message, 'error');
-    });
+    }
 }
 
 function viewEmail(id) {
@@ -440,15 +447,14 @@ function deleteEmail(id) {
     showModal(content);
 }
 
-function confirmDeleteEmail(id) {
-    fetch(`https://node-rahul-timbaliya.vercel.app/api/mail/delete/${id}`, {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-    .then(response => {
+async function confirmDeleteEmail(id) {
+    try {
+        const response = await window.makeAuthenticatedRequest(`https://node-rahul-timbaliya.vercel.app/api/mail/delete/${id}`, {
+            method: 'DELETE'
+        });
+        
         if (!response.ok) throw new Error('Failed to delete email.');
+        
         // Remove from local data and update UI
         const index = sampleEmails.findIndex(e => e.id === id);
         if (index > -1) {
@@ -459,11 +465,10 @@ function confirmDeleteEmail(id) {
         }
         hideModal();
         showToast('Email deleted successfully!', 'success');
-    })
-    .catch(error => {
+    } catch (error) {
         hideModal();
         showToast('Error: ' + error.message, 'error');
-    });
+    }
 }
 
 // Initialize
