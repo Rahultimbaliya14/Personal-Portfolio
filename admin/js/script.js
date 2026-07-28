@@ -28,6 +28,18 @@ document.addEventListener('click', (e) => {
     }
 });
 
+// Reset to a clean desktop state whenever the viewport crosses the mobile
+// breakpoint, since the 'collapsed' class means two different things on
+// mobile (open drawer) vs desktop (mini sidebar).
+function handleResize() {
+    if (window.innerWidth > 768) {
+        sidebar.classList.remove('collapsed');
+        mainContent.classList.remove('expanded');
+        const icon = toggleBtn.querySelector('i');
+        if (icon) icon.className = 'fas fa-bars';
+    }
+}
+
 // Global variables
 let sampleFeedback = [];
 let sampleEmails = [];
@@ -93,7 +105,7 @@ async function generateSampleFeedback() {
 // Sample email data
 async function generateSampleEmails() {
     const emailcall = await appendAPIDataEmail().then(data => data);
-    const emails = 
+    const emails =
     emailcall.map(item => ({
         id: item._id,
         sender: item.email.split('@')[0].toUpperCase(),
@@ -102,8 +114,6 @@ async function generateSampleEmails() {
     }));
     return emails;
 }
-
-
 
 
 // Render feedback table
@@ -151,7 +161,9 @@ function loadFeedbackTable(data = []) {
         `;
         tbody.appendChild(row);
     });
-}// Render email table
+}
+
+// Render email table
 function loadEmailTable(data = []) {
     const tbody = document.getElementById('emailTableBody');
     tbody.innerHTML = '';
@@ -234,6 +246,24 @@ function loadEmailTableWithPagination(page = 1) {
     updatePagination('email', currentEmailPage, filteredEmails.length);
 }
 
+function changeFeedbackPage(direction) {
+    const totalPages = Math.ceil(filteredFeedback.length / itemsPerPage);
+    const newPage = currentFeedbackPage + direction;
+    if (newPage >= 1 && newPage <= totalPages) {
+        currentFeedbackPage = newPage;
+        loadFeedbackTableWithPagination(currentFeedbackPage);
+    }
+}
+
+function changeEmailPage(direction) {
+    const totalPages = Math.ceil(filteredEmails.length / itemsPerPage);
+    const newPage = currentEmailPage + direction;
+    if (newPage >= 1 && newPage <= totalPages) {
+        currentEmailPage = newPage;
+        loadEmailTableWithPagination(currentEmailPage);
+    }
+}
+
 function updatePagination(type, currentPage, totalItems) {
     const totalPages = Math.ceil(totalItems / itemsPerPage);
     const info = document.getElementById(`${type}PaginationInfo`);
@@ -241,9 +271,11 @@ function updatePagination(type, currentPage, totalItems) {
     const next = document.getElementById(`${type}NextBtn`);
     const numbers = document.getElementById(`${type}PaginationNumbers`);
 
-    info.textContent = `Showing ${(currentPage - 1) * itemsPerPage + 1}-${Math.min(currentPage * itemsPerPage, totalItems)} of ${totalItems} entries`;
+    info.textContent = totalItems === 0
+        ? 'Showing 0 of 0 entries'
+        : `Showing ${(currentPage - 1) * itemsPerPage + 1}-${Math.min(currentPage * itemsPerPage, totalItems)} of ${totalItems} entries`;
     prev.disabled = currentPage === 1;
-    next.disabled = currentPage === totalPages;
+    next.disabled = currentPage === totalPages || totalPages === 0;
 
     numbers.innerHTML = '';
     for (let i = 1; i <= totalPages; i++) {
@@ -267,19 +299,19 @@ function updatePagination(type, currentPage, totalItems) {
 function showModal(content) {
     const overlay = document.getElementById('adminModalOverlay');
     const modalContent = document.getElementById('adminModalContent');
-    
+
     modalContent.innerHTML = content;
     overlay.classList.add('show');
-    
+
     // Add event listeners for modal close
     const closeBtn = document.getElementById('adminModalClose');
     closeBtn.onclick = hideModal;
-    
+
     // Close modal when clicking overlay
     overlay.onclick = (e) => {
         if (e.target === overlay) hideModal();
     };
-    
+
     // Close modal with Escape key
     document.addEventListener('keydown', handleEscapeKey);
 }
@@ -300,7 +332,6 @@ function handleEscapeKey(e) {
 function viewFeedback(id) {
     const f = sampleFeedback.find(fb => fb.id === id);
     if (!f) return;
-    console.log(f)
     const content = `
         <div class="modal-header">
             <h3>View Feedback</h3>
@@ -325,14 +356,14 @@ function viewFeedback(id) {
             <button class="modal-btn modal-btn-primary" onclick="hideModal()">Close</button>
         </div>
     `;
-    
+
     showModal(content);
 }
 
 function deleteFeedback(id) {
     const f = sampleFeedback.find(fb => fb.id === id);
     if (!f) return;
-    
+
     const content = `
         <div class="modal-header">
             <h3>Delete Feedback</h3>
@@ -349,14 +380,14 @@ function deleteFeedback(id) {
                     <span class="detail-value">${f.message.substring(0, 100)}${f.message.length > 100 ? '...' : ''}</span>
                 </div>
             </div>
-            <p style="color: var(--danger-color); font-weight: 600; margin-top: 15px;">This action cannot be undone.</p>
+            <p style="color: var(--danger); font-weight: 600; margin-top: 15px;">This action cannot be undone.</p>
         </div>
         <div class="modal-buttons">
             <button class="modal-btn modal-btn-secondary" onclick="hideModal()">Cancel</button>
             <button class="modal-btn modal-btn-danger" onclick="confirmDeleteFeedback('${id}')">Delete</button>
         </div>
     `;
-    
+
     showModal(content);
 }
 
@@ -365,10 +396,9 @@ async function confirmDeleteFeedback(id) {
         const response = await window.makeAuthenticatedRequest(`https://node-rahul-timbaliya.vercel.app/api/feedback/delete/${id}`, {
             method: 'DELETE'
         });
-        
+
         if (!response.ok) throw new Error('Failed to delete feedback.');
-        
-        // Remove from local data and update UI
+
         const index = sampleFeedback.findIndex(f => f.id === id);
         if (index > -1) {
             sampleFeedback.splice(index, 1);
@@ -387,7 +417,7 @@ async function confirmDeleteFeedback(id) {
 function viewEmail(id) {
     const e = sampleEmails.find(email => email.id === id);
     if (!e) return;
-    
+
     const content = `
         <div class="modal-header">
             <h3>View Email</h3>
@@ -412,14 +442,14 @@ function viewEmail(id) {
             <button class="modal-btn modal-btn-primary" onclick="hideModal()">Close</button>
         </div>
     `;
-    
+
     showModal(content);
 }
 
 function deleteEmail(id) {
     const e = sampleEmails.find(email => email.id === id);
     if (!e) return;
-    
+
     const content = `
         <div class="modal-header">
             <h3>Delete Email</h3>
@@ -436,14 +466,14 @@ function deleteEmail(id) {
                     <span class="detail-value">${new Date(e.date).toLocaleDateString()}</span>
                 </div>
             </div>
-            <p style="color: var(--danger-color); font-weight: 600; margin-top: 15px;">This action cannot be undone.</p>
+            <p style="color: var(--danger); font-weight: 600; margin-top: 15px;">This action cannot be undone.</p>
         </div>
         <div class="modal-buttons">
             <button class="modal-btn modal-btn-secondary" onclick="hideModal()">Cancel</button>
             <button class="modal-btn modal-btn-danger" onclick="confirmDeleteEmail('${id}')">Delete</button>
         </div>
     `;
-    
+
     showModal(content);
 }
 
@@ -452,10 +482,9 @@ async function confirmDeleteEmail(id) {
         const response = await window.makeAuthenticatedRequest(`https://node-rahul-timbaliya.vercel.app/api/mail/delete/${id}`, {
             method: 'DELETE'
         });
-        
+
         if (!response.ok) throw new Error('Failed to delete email.');
-        
-        // Remove from local data and update UI
+
         const index = sampleEmails.findIndex(e => e.id === id);
         if (index > -1) {
             sampleEmails.splice(index, 1);
@@ -469,6 +498,22 @@ async function confirmDeleteEmail(id) {
         hideModal();
         showToast('Error: ' + error.message, 'error');
     }
+}
+
+function showToast(message, type = 'success') {
+    const container = document.getElementById('adminToastContainer');
+    if (!container) return;
+    const toast = document.createElement('div');
+    toast.className = `admin-toast admin-toast-${type}`;
+    toast.innerHTML = `
+        <span>${message}</span>
+        <button class="toast-close" onclick="this.parentElement.remove()" aria-label="Close">&times;</button>
+    `;
+    container.appendChild(toast);
+    setTimeout(() => {
+        toast.style.opacity = '0';
+        setTimeout(() => toast.remove(), 400);
+    }, 2500);
 }
 
 // Initialize
@@ -486,26 +531,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('searchInput').addEventListener('input', searchFeedback);
     document.getElementById('emailSearchInput').addEventListener('input', searchEmails);
 });
-
-function showToast(message, type = 'success') {
-    const container = document.getElementById('adminToastContainer');
-    if (!container) return;
-    const toast = document.createElement('div');
-    toast.className = `admin-toast admin-toast-${type}`;
-    toast.innerHTML = `
-        <span>${message}</span>
-        <button class="toast-close" onclick="this.parentElement.remove()" aria-label="Close">&times;</button>
-    `;
-    container.appendChild(toast);
-    setTimeout(() => {
-        toast.style.opacity = '0';
-        setTimeout(() => toast.remove(), 400);
-    }, 2500);
-}
-    const icon = toggleBtn.querySelector('i');
-    sidebar.classList.remove('collapsed');
-    mainContent.classList.remove('expanded');
-    icon.className = 'fas fa-bars';
 
 window.addEventListener('resize', handleResize);
 handleResize();

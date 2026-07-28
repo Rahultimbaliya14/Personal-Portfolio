@@ -30,7 +30,12 @@ class AuthManager {
     setCookie(name, value, days) {
         const expires = new Date();
         expires.setTime(expires.getTime() + (days * 24 * 60 * 60 * 1000));
-        document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/;SameSite=Strict;Secure=${location.protocol === 'https:'}`;
+        // "Secure" is a boolean flag, not a key=value pair — appending
+        // ";Secure=false" doesn't reliably turn it off in every browser.
+        // Only include the flag at all when the page is actually served
+        // over HTTPS.
+        const secureFlag = location.protocol === 'https:' ? ';Secure' : '';
+        document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/;SameSite=Strict${secureFlag}`;
     }
 
     getCookie(name) {
@@ -169,7 +174,7 @@ class AuthManager {
             togglePassword.addEventListener('click', () => {
                 const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
                 passwordInput.setAttribute('type', type);
-                
+
                 const icon = togglePassword.querySelector('i');
                 icon.className = type === 'password' ? 'fas fa-eye' : 'fas fa-eye-slash';
             });
@@ -214,7 +219,7 @@ class AuthManager {
         try {
             await this.login(email, password);
             this.showToast('Login successful! Redirecting...', 'success');
-            
+
             // Redirect after short delay
             setTimeout(() => {
                 this.redirectToDashboard();
@@ -236,9 +241,9 @@ class AuthManager {
 
         const toast = document.createElement('div');
         toast.className = `toast ${type}`;
-        
-        const icon = type === 'success' ? 'fas fa-check-circle' : 
-                    type === 'error' ? 'fas fa-exclamation-circle' : 
+
+        const icon = type === 'success' ? 'fas fa-check-circle' :
+                    type === 'error' ? 'fas fa-exclamation-circle' :
                     'fas fa-info-circle';
 
         toast.innerHTML = `
@@ -334,10 +339,10 @@ window.logout = () => {
 // Auto-refresh token before expiry (optional enhancement)
 setInterval(() => {
     if (authManager.isAuthenticated()) {
-        const expiryTime = authManager.getCookie(authManager.TOKEN_EXPIRY_KEY) || 
+        const expiryTime = authManager.getCookie(authManager.TOKEN_EXPIRY_KEY) ||
                           localStorage.getItem(authManager.TOKEN_EXPIRY_KEY);
         const timeLeft = parseInt(expiryTime) - new Date().getTime();
-        
+
         // If less than 1 hour left, could implement token refresh here
         if (timeLeft < 60 * 60 * 1000) {
             console.log('Token expiring soon. Consider implementing refresh logic.');
