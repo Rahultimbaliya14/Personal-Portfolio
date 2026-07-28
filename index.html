@@ -4,13 +4,14 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Rahul Timbaliya - Full Stack Developer</title>
+	<title>Rahul Timbaliya — Full-Stack Developer</title>
 	<link rel="shortcut icon" href="image/logo2.png" type="image/x-icon">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500;600;700;800;900&display=swap"
+	<link
+		href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap"
 		rel="stylesheet">
 	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3596028716411749"
 		crossorigin="anonymous"></script>
@@ -21,199 +22,260 @@
 	<div id="emailModal" class="modal-overlay">
 		<div class="modal-container">
 			<div class="modal-content">
-				<h3>Stay Connected</h3>
-				<p>Just leave your email, and I’ll send over the information you’re looking for</p>
-				<div class="email-form">
-					<input type="email" id="emailInput" placeholder="Enter your email address" required>
-					<div class="modal-buttons">
-						<button type="button" id="sendEmail" class="modal-btn send-btn">Send</button>
-						<button type="button" id="cancelModal" class="modal-btn cancel-btn">Cancel</button>
+				<div class="modal-titlebar">
+					<span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
+					<span class="modal-filename">connect.sh</span>
+				</div>
+				<div class="modal-body">
+					<p class="modal-eyebrow">// stay connected</p>
+					<h3>Get about me</h3>
+					<p class="modal-copy">Just leave your email, and I’ll send over the information you’re looking for
+					</p>
+					<div class="email-form">
+						<div class="input-line">
+							<span class="prompt-sign">$</span>
+							<input type="email" id="emailInput" placeholder="you@example.com" required>
+						</div>
+						<div class="modal-buttons">
+							<button type="button" id="sendEmail" class="modal-btn send-btn">Submit</button>
+							<button type="button" id="cancelModal" class="modal-btn cancel-btn">Not now</button>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+
 	<!-- Header -->
 	<header>
-		<!-- Removed logo for cleaner look -->
-		<div class="bx bx-menu" id="menu-icon" aria-label="Open navigation" tabindex="0"></div>
-		<nav id="main-nav" class="navlist-container" aria-label="Main navigation">
-			<ul class="navlist">
-				<li><a href="#home">Home</a></li>
-				<li><a href="#skill">Skills</a></li>
-				<li><a href="#about">About</a></li>
-				<li><a href="#certificate1">Certificates</a></li>
-				<li><a href="#service">Projects</a></li>
-				<li><a href="#con">Contact</a></li>
-			</ul>
-			<a href="Educational/pdf/Rahul Timbaliya Resume.pdf" class="top-btn" download>Download CV</a>
-			<button id="close-menu" class="close-menu" aria-label="Close navigation">&times;</button>
-		</nav>
-		<div id="nav-overlay" class="nav-overlay"></div>
+		<div class="header-inner">
+			<a href="#home" class="brand">
+				<span class="brand-path">~/</span><span class="brand-name">rahul-timbaliya</span>
+			</a>
+			<div class="bx bx-menu" id="menu-icon" aria-label="Open navigation" tabindex="0"></div>
+			<nav id="main-nav" class="navlist-container" aria-label="Main navigation">
+				<div class="nav-file-header">portfolio<span class="ext">/</span></div>
+				<ul class="navlist">
+					<li><a href="#home"><i class='bx bx-file'></i>home.md</a></li>
+					<li><a href="#skill"><i class='bx bx-file'></i>skills.json</a></li>
+					<li><a href="#about"><i class='bx bx-file'></i>about.log</a></li>
+					<li><a href="#certificate1"><i class='bx bx-folder'></i>certificates/</a></li>
+					<li><a href="#service"><i class='bx bx-folder'></i>projects/</a></li>
+					<li><a href="#con"><i class='bx bx-file'></i>contact.sh</a></li>
+				</ul>
+				<a href="Educational/pdf/Rahul Timbaliya Resume.pdf" class="top-btn" download><i
+						class='bx bx-download'></i></a>
+				<button id="close-menu" class="close-menu" aria-label="Close navigation">&times;</button>
+			</nav>
+			<div id="nav-overlay" class="nav-overlay"></div>
+		</div>
 	</header>
 
 	<!-- Home Section -->
 	<section class="home" id="home">
+		<canvas id="hero-canvas" class="hero-canvas" aria-hidden="true"></canvas>
 		<div class="home-text">
-			<h3>Welcome, I'm</h3>
+			
+			<p class="eyebrow"># whoami</p>
 			<h1>Rahul Timbaliya</h1>
-			<h5>Passionate <span>Full-Stack Developer</span></h5>
-			<p>Currently working as Software Engineer at Reliance Industries Limited, crafting innovative web solutions with
-				cutting-edge technologies</p>
+			<p class="role-line"><span class="prompt-sign">&gt;</span> Full-Stack Developer<span
+					class="cursor-blink">_</span></p>
+			<p class="lead">Currently building at <strong>Reliance Industries Limited</strong> as an Application Manager
+				— shipping web platforms end to end, from database schema to pixel-perfect UI.</p>
+			<div class="status-row">
+				<span class="status-pill"><span class="status-dot"></span>Open to interesting projects </span>
+			</div>
+
 			<div class="social">
-				<a href="https://www.facebook.com/rahul.timbaliya/" target="_blank" aria-label="Facebook"><i
-						class='bx bxl-facebook-circle'></i></a>
 				<a href="https://www.linkedin.com/in/rahul-timbaliya" target="_blank" aria-label="LinkedIn"><i
 						class='bx bxl-linkedin-square'></i></a>
 				<a href="https://github.com/Rahultimbaliya14" target="_blank" aria-label="GitHub"><i
 						class='bx bxl-github'></i></a>
 				<a href="https://stackoverflow.com/users/21492105/rahul-timbaliya" target="_blank"
 					aria-label="Stack Overflow"><i class='bx bxl-stack-overflow'></i></a>
+					<a href="https://rahultimbaliya.blogspot.com/" target="_blank"
+					aria-label="Blogger"><i class='bx bxl-blogger'></i></a>
 				<a href="https://bit.ly/Rahultimbaliyagooglecloud" target="_blank" aria-label="Google Cloud"><i
 						class='bx bxl-google-cloud'></i></a>
 				<a href="https://www.instagram.com/rahultimbaliya/" target="_blank" aria-label="Instagram"><i
 						class='bx bxl-instagram'></i></a>
+				<a href="https://www.facebook.com/rahul.timbaliya/" target="_blank" aria-label="Facebook"><i
+						class='bx bxl-facebook-circle'></i></a>
 			</div>
-			<a href="#about" class="btn">Explore My Work</a>
+			<a href="#about" class="btn"><i class='bx bx-right-arrow-alt'></i> Explore my work</a>
 		</div>
 
 		<div class="home-img">
 			<div class="iframe-wrapper">
-				<iframe src="https://rahultimbaliya14.github.io/Metrix/" title="Portfolio Demo" scrolling="no"
-					class="animated-iframe" allowfullscreen loading="lazy"></iframe>
+				<div class="editor-titlebar">
+					<span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
+					<span class="editor-filename">profile.js</span>
+				</div>
+				<div class="profile-code">
+					<pre><code><span class="ln">1</span><span class="c-kw">const</span> <span class="c-var">developer</span> <span class="c-punc">= {</span>
+<span class="ln">2</span>  <span class="c-key">name</span><span class="c-punc">:</span> <span class="c-str">"Rahul Timbaliya"</span><span class="c-punc">,</span>
+<span class="ln">3</span>  <span class="c-key">role</span><span class="c-punc">:</span> <span class="c-str">"Full-Stack Developer"</span><span class="c-punc">,</span>
+<span class="ln">4</span>  <span class="c-key">company</span><span class="c-punc">:</span> <span class="c-str">"Reliance Industries Ltd"</span><span class="c-punc">,</span>
+<span class="ln">5</span>  <span class="c-key">stack</span><span class="c-punc">:</span> <span class="c-punc">[</span><span class="c-str">"C#"</span><span class="c-punc">,</span> <span class="c-str">"Angular"</span><span class="c-punc">,</span> <span class="c-str">"Python"</span><span class="c-punc">,</span> <span class="c-str">"SQL"</span><span class="c-punc">],</span>
+<span class="ln">6</span>  <span class="c-key">basedIn</span><span class="c-punc">:</span> <span class="c-str">"Ahmedabad, India"</span><span class="c-punc">,</span>
+<span class="ln">7</span>  <span class="c-key">status</span><span class="c-punc">:</span> <span class="c-str">"available"</span><span class="c-punc">,</span>
+<span class="ln">8</span><span class="c-punc">};</span>
+<span class="ln">9</span>
+<span class="ln">10</span><span class="c-com">// let's build something →</span><span class="cursor-blink">_</span></code></pre>
+				</div>
 			</div>
 		</div>
 	</section>
 
 	<!-- Skills Section -->
+	<!-- Skills Section -->
 	<section class="sub-service" id="skill">
-		<h3>Programming Languages</h3>
-		<div class="items">
-			<div class="sub-box">
-				<div class="sub-img">
-					<img src="image/Csharp.png" alt="C#">
-					<h3>C#</h3>
-				</div>
-			</div>
-
-			<div class="sub-box">
-				<div class="sub-img">
-					<img src="image/ASP.png" alt="ASP.NET">
-					<h3>ASP .NET</h3>
-				</div>
-			</div>
-
-
-			<div class="sub-box">
-				<div class="sub-img">
-					<img src="image/angular.png" height="200px" width="200px" alt="Angular">
-					<h3>Angular</h3>
-				</div>
-			</div>
-			<div class="sub-box">
-				<div class="sub-img">
-					<img src="image/powerbi.png" alt="Python">
-					<h3>Power BI</h3>
-				</div>
-			</div>
-			<div class="sub-box">
-				<div class="sub-img">
-					<img src="image/powerapps.png" alt="Power Apps">
-					<h3>Power Apps</h3>
-				</div>
-			</div>
-			<div class="sub-box">
-				<div class="sub-img">
-					<img src="image/Python.png" alt="Python">
-					<h3>Python</h3>
-				</div>
-			</div>
-
-			<div class="sub-box">
-				<div class="sub-img">
-					<img src="image/Php.png" alt="PHP">
-					<h3>PHP</h3>
-				</div>
-			</div>
-
-			<div class="sub-box">
-				<div class="sub-img">
-					<img src="image/Java.png" alt="Java">
-					<h3>Java</h3>
-				</div>
-			</div>
-
-			<div class="sub-box">
-				<div class="sub-img">
-					<img src="image/c++.png" alt="C++">
-					<h3>C++</h3>
-				</div>
-			</div>
-
-			<div class="sub-box">
-				<div class="sub-img">
-					<img src="image/c.png" alt="C">
-					<h3>C</h3>
-				</div>
-			</div>
-
-			<div class="sub-box">
-				<div class="sub-img">
-					<img src="image/SQl.png" alt="SQL">
-					<h3>SQL</h3>
-				</div>
-			</div>
+		<div class="heading">
+			<p class="eyebrow"># 01 — capabilities</p>
+			<h3>skills.json</h3>
+			<p>The languages and tools I reach for daily</p>
 		</div>
 
-		<h3>Development Tools & Technologies</h3>
-		<div class="items">
-			<div class="sub-box">
-				<div class="sub-img">
-					<img src="image/django.png" alt="Django">
-					<h3>Django (Python)</h3>
-				</div>
+		<div class="code-frame">
+			<div class="code-titlebar">
+				<span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
+				<span class="editor-filename">skills.json</span>
 			</div>
-
-			<div class="sub-box">
-				<div class="sub-img">
-					<img src="image/visualstudio.png" alt="Visual Studio">
-					<h3>Visual Studio</h3>
+			<div class="code-body">
+				<p class="json-key">"languages"<span class="json-punc">: [</span></p>
+				<div class="items">
+					<div class="sub-box">
+						<div class="sub-img"><img src="image/csharp.png" alt="C#">
+							<h3>C#</h3>
+						</div>
+					</div>
+					<div class="sub-box">
+						<div class="sub-img"><img src="image/sql.png" alt="SQL">
+							<h3>SQL</h3>
+						</div>
+					</div>
+					<div class="sub-box">
+						<div class="sub-img"><img src="image/javascript.png" alt="JavaScript">
+							<h3>JavaScript</h3>
+						</div>
+					</div>
+					<div class="sub-box">
+						<div class="sub-img"><img src="image/java.png" alt="Java">
+							<h3>Java</h3>
+						</div>
+					</div>
+					<div class="sub-box">
+						<div class="sub-img"><img src="image/python.png" alt="Python">
+							<h3>Python</h3>
+						</div>
+					</div>
+					<div class="sub-box">
+						<div class="sub-img"><img src="image/php.png" alt="PHP">
+							<h3>PHP</h3>
+						</div>
+					</div>
+					<div class="sub-box">
+						<div class="sub-img"><img src="image/c++.png" alt="C++">
+							<h3>C++</h3>
+						</div>
+					</div>
+					<div class="sub-box">
+						<div class="sub-img"><img src="image/c.png" alt="C">
+							<h3>C</h3>
+						</div>
+					</div>
 				</div>
-			</div>
+				<p class="json-punc">],</p>
 
-			<div class="sub-box">
-				<div class="sub-img">
-					<img src="image/code.png" alt="VS Code">
-					<h3>Visual Studio Code</h3>
+				<p class="json-key">"framework"<span class="json-punc">: [</span></p>
+				<div class="items">
+					<div class="sub-box">
+						<div class="sub-img"><img src="image/asp.png" alt="ASP.NET">
+							<h3>ASP .NET</h3>
+						</div>
+					</div>
+					<div class="sub-box">
+						<div class="sub-img"><img src="image/aspframework.png" alt="ASP.NET">
+							<h3>ASP .NET Framework</h3>
+						</div>
+					</div>
+					<div class="sub-box">
+						<div class="sub-img"><img src="image/angular.png" alt="Angular">
+							<h3>Angular</h3>
+						</div>
+					</div>
+					<div class="sub-box">
+						<div class="sub-img"><img src="image/node.png" alt="Node.js">
+							<h3>Node.js</h3>
+						</div>
+					</div>
+					<div class="sub-box">
+						<div class="sub-img"><img src="image/django.png" alt="Django">
+							<h3>Django (Python)</h3>
+						</div>
+					</div>
 				</div>
-			</div>
+				<p class="json-punc">],</p>
 
-			<div class="sub-box">
-				<div class="sub-img">
-					<img src="image/Androio.png" alt="Android Studio">
-					<h3>Android Studio</h3>
+				<p class="json-key">"cloud"<span class="json-punc">: [</span></p>
+				<div class="items">
+					<div class="sub-box">
+						<div class="sub-img"><img src="image/azure.png" alt="Azure">
+							<h3>Microsoft Azure</h3>
+						</div>
+					</div>
 				</div>
-			</div>
+				<p class="json-punc">],</p>
 
-			<div class="sub-box">
-				<div class="sub-img">
-					<img src="image/mysql.png" alt="MySQL">
-					<h3>MySQL</h3>
+				<p class="json-key">"tools"<span class="json-punc">: [</span></p>
+				<div class="items">
+					<div class="sub-box">
+						<div class="sub-img"><img src="image/visualstudio.png" alt="Visual Studio">
+							<h3>Visual Studio</h3>
+						</div>
+					</div>
+					<div class="sub-box">
+						<div class="sub-img"><img src="image/code.png" alt="VS Code">
+							<h3>Visual Studio Code</h3>
+						</div>
+					</div>
+					<div class="sub-box">
+						<div class="sub-img"><img src="image/azuredevops.png" alt="Azure DevOps">
+							<h3>Azure DevOps</h3>
+						</div>
+					</div>
+					<div class="sub-box">
+						<div class="sub-img"><img src="image/powerbi.png" alt="Power BI">
+							<h3>Power BI</h3>
+						</div>
+					</div>
+					<div class="sub-box">
+						<div class="sub-img"><img src="image/powerapps.png" alt="Power Apps">
+							<h3>Power Apps</h3>
+						</div>
+					</div>
+					<div class="sub-box">
+						<div class="sub-img"><img src="image/sqlserver.png" alt="SQL Server">
+							<h3>SQL Server</h3>
+						</div>
+					</div>
+					<div class="sub-box">
+						<div class="sub-img"><img src="image/iis.png" alt="IIS">
+							<h3>Internet Information Services</h3>
+						</div>
+					</div>
+					<div class="sub-box">
+						<div class="sub-img"><img src="image/android.png" alt="Android Studio">
+							<h3>Android Studio</h3>
+						</div>
+					</div>
+					<div class="sub-box">
+						<div class="sub-img"><img src="image/mysql.png" alt="MySQL">
+							<h3>MySQL</h3>
+						</div>
+					</div>
 				</div>
-			</div>
-
-			<div class="sub-box">
-				<div class="sub-img">
-					<img src="image/sqlserver.png" alt="SQL Server">
-					<h3>SQL Server</h3>
-				</div>
-			</div>
-
-			<div class="sub-box">
-				<div class="sub-img">
-					<img src="image/Internet Information Service.png" alt="IIS">
-					<h3>Internet Information Services</h3>
-				</div>
+				<p class="json-punc">]</p>
 			</div>
 		</div>
 	</section>
@@ -221,321 +283,237 @@
 	<!-- About Section -->
 	<section class="about" id="about">
 		<div class="heading">
-			<h3>About</h3>
-			<p>Introduction</p>
+			<p class="eyebrow"># 02 — background</p>
+			<h3>about.log</h3>
+			<p>Where I've worked, and what I studied to get here</p>
 		</div>
 
 		<div class="about-content">
 			<div class="experience-section">
-				<h1><i class='bx bx-briefcase'></i> Professional Experience</h1>
-
-				<div class="experience-item">
-					<h3><i class='bx bxs-star'></i>Application Manager</h3>
-					<div class="exp-details">
-						<div class="exp-info">
-							<i class='bx bxs-map'></i>
-							<span>Reliance Industries Limited, Ahmedabad</span>
+				<h1><i class='bx bx-terminal'></i> experience.log</h1>
+				<div class="log-timeline">
+					<div class="experience-item">
+						<div class="log-marker log-active"></div>
+						<h3>Application Manager</h3>
+						<div class="exp-details">
+							<div class="exp-info"><i class='bx bxs-map'></i><span>Reliance Industries Limited,
+									Ahmedabad</span></div>
+							<div class="exp-info"><i class='bx bxs-calendar'></i><span>May 2026 — Present</span></div>
 						</div>
-						<div class="exp-info">
-							<i class='bx bxs-calendar'></i>
-							<span>May 2026 - Present</span>
-						</div>
+						<div class="result result-active">● current</div>
 					</div>
-					<div class="result">Present</div>
-				</div>
 
-				<div class="experience-item">
-					<h3><i class='bx bxs-star'></i> Software Engineer</h3>
-					<div class="exp-details">
-						<div class="exp-info">
-							<i class='bx bxs-map'></i>
-							<span>AnsiByteCode LLP, Ahmedabad</span>
+					<div class="experience-item">
+						<div class="log-marker"></div>
+						<h3>Software Engineer</h3>
+						<div class="exp-details">
+							<div class="exp-info"><i class='bx bxs-map'></i><span>AnsiByteCode LLP, Ahmedabad</span>
+							</div>
+							<div class="exp-info"><i class='bx bxs-calendar'></i><span>Dec 2023 — May 2026</span></div>
 						</div>
-						<div class="exp-info">
-							<i class='bx bxs-calendar'></i>
-							<span>Dec 2023 - May 2026</span>
-						</div>
+						<div class="result">✓ completed</div>
 					</div>
-					<div class="result">Completed</div>
-				</div>
 
-				<div class="experience-item">
-					<h3><i class='bx bxs-star'></i> Software Engineer Trainee</h3>
-					<div class="exp-details">
-						<div class="exp-info">
-							<i class='bx bxs-map'></i>
-							<span>AnsiByteCode LLP, Ahmedabad</span>
+					<div class="experience-item">
+						<div class="log-marker"></div>
+						<h3>Software Engineer Trainee</h3>
+						<div class="exp-details">
+							<div class="exp-info"><i class='bx bxs-map'></i><span>AnsiByteCode LLP, Ahmedabad</span>
+							</div>
+							<div class="exp-info"><i class='bx bxs-calendar'></i><span>May 2023 — Dec 2023</span></div>
 						</div>
-						<div class="exp-info">
-							<i class='bx bxs-calendar'></i>
-							<span>May 2023 - Dec 2023</span>
-						</div>
+						<div class="result">✓ completed</div>
 					</div>
-					<div class="result">Completed</div>
 				</div>
 			</div>
 
 			<div class="education-section">
-				<h1><i class='bx bx-book-reader'></i> Educational Background</h1>
+				<h1><i class='bx bx-book-reader'></i> education.log</h1>
+				<div class="log-timeline">
+					<div class="education-item">
+						<div class="log-marker log-active"></div>
+						<h3>Master of Computer Applications</h3>
+						<div class="exp-details">
+							<div class="exp-info"><i class='bx bxs-map'></i><span>Indira Gandhi National Open
+									University</span></div>
+							<div class="exp-info"><i class='bx bxs-calendar'></i><span>2023 — Current</span></div>
+						</div>
 
-				<div class="education-item">
-					<h3><i class='bx bxs-star'></i> Master of Computer Applications (2023-Current)</h3>
-					<div class="exp-details">
-						<div class="exp-info">
-							<i class='bx bxs-map'></i>
-							<span>Indira Gandhi National Open University</span>
-						</div>
-						<div class="exp-info">
-							<i class='bx bxs-calendar'></i>
-							<span>2023 - Current</span>
+						<div class="education-results">
+							<div class="result result-active">● in progress</div>
+							<a href="https://gradecard.ignou.ac.in/view_gradecard.aspx?eno=2350561872&prog=MCA_NEW&type=1#"
+								class="result-btn" target="_blank">View
+								Results</a>
 						</div>
 					</div>
-					<div class="result">In Progress</div>
-				</div>
 
-				<div class="education-item">
-					<h3><i class='bx bxs-star'></i> Bachelor of Computer Applications (2020-2023)</h3>
-					<div class="exp-details">
-						<div class="exp-info">
-							<i class='bx bxs-map'></i>
-							<span>Dr. Subhash Technical Campus, Junagadh</span>
+					<div class="education-item">
+						<div class="log-marker"></div>
+						<h3>Bachelor of Computer Applications</h3>
+						<div class="exp-details">
+							<div class="exp-info"><i class='bx bxs-map'></i><span>Dr. Subhash Technical Campus,
+									Junagadh</span></div>
+							<div class="exp-info"><i class='bx bxs-calendar'></i><span>2020 — 2023</span></div>
 						</div>
-						<div class="exp-info">
-							<i class='bx bxs-calendar'></i>
-							<span>2020 - 2023</span>
+						<div class="education-results">
+							<div class="result">CGPA: 8.0</div>
+							<a href="Educational/BCA-Result Rahul-Timbaliya.zip" class="result-btn" download>View
+								Results</a>
 						</div>
 					</div>
-					<div class="education-results">
-						<div class="result">CGPA: 8.0</div>
-						<a href="Educational/BCA-Result Rahul-Timbaliya.zip" class="result-btn" download>View
-							Results</a>
-					</div>
-				</div>
 
-				<div class="education-item">
-					<h3><i class='bx bxs-star'></i> Higher Secondary Education (2019-2020)</h3>
-					<div class="exp-details">
-						<div class="exp-info">
-							<i class='bx bxs-map'></i>
-							<span>G.N. Damani High School</span>
+					<div class="education-item">
+						<div class="log-marker"></div>
+						<h3>Higher Secondary Education</h3>
+						<div class="exp-details">
+							<div class="exp-info"><i class='bx bxs-map'></i><span>G.N. Damani High School</span></div>
+							<div class="exp-info"><i class='bx bxs-calendar'></i><span>2019 — 2020</span></div>
 						</div>
-						<div class="exp-info">
-							<i class='bx bxs-calendar'></i>
-							<span>2019 - 2020</span>
-						</div>
+						<div class="result">90%</div>
 					</div>
-					<div class="result">Percentage: 90%</div>
-				</div>
 
-				<div class="education-item">
-					<h3><i class='bx bxs-star'></i> Secondary School Certificate (2017-2018)</h3>
-					<div class="exp-details">
-						<div class="exp-info">
-							<i class='bx bxs-map'></i>
-							<span>G.N. Damani High School</span>
+					<div class="education-item">
+						<div class="log-marker"></div>
+						<h3>Secondary School Certificate</h3>
+						<div class="exp-details">
+							<div class="exp-info"><i class='bx bxs-map'></i><span>G.N. Damani High School</span></div>
+							<div class="exp-info"><i class='bx bxs-calendar'></i><span>2017 — 2018</span></div>
 						</div>
-						<div class="exp-info">
-							<i class='bx bxs-calendar'></i>
-							<span>2017 - 2018</span>
-						</div>
+						<div class="result">59%</div>
 					</div>
-					<div class="result">Percentage: 59%</div>
 				</div>
 			</div>
-
-
 		</div>
 
-		<a href="#con" class="contactme">Contact Me</a>
+		<a href="#con" class="contactme"><i class='bx bx-envelope'></i> Contact me</a>
 	</section>
 
 	<!-- Certificates Section -->
 	<section class="portfolio" id="certificate1">
 		<div class="heading">
-			<h3>Certificates</h3>
-			<p>Professional Certifications<br>Continuous Learning & Achievement</p>
+			<p class="eyebrow"># 03 — verified</p>
+			<h3>certificates/</h3>
+			<p>Professional certifications and continuous learning</p>
 		</div>
 
 		<div class="portfolio-content">
 			<div class="col">
-				<div class="pin"></div>
 				<img src="Educational/az204.png" alt="Microsoft Certified: Azure Developer Associate">
 				<div class="cert-divider"></div>
 				<div class="layer">
 					<h3>Microsoft Certified: Azure Developer Associate</h3>
-					<span class="link">
-						<a href="https://learn.microsoft.com/api/credentials/share/en-gb/RahulTimbaliya-6658/7DA97B6EF938D6B0?sharingId=4BDF7C8F4DFEA30A"
-							target="_blank" aria-label="View Certificate">
-							<i class='bx bx-link'></i>
-						</a>
-					</span>
+					<span class="link"><a
+							href="https://learn.microsoft.com/api/credentials/share/en-gb/RahulTimbaliya-6658/7DA97B6EF938D6B0?sharingId=4BDF7C8F4DFEA30A"
+							target="_blank" aria-label="View Certificate"><i class='bx bx-link-external'></i></a></span>
 				</div>
 			</div>
-
 			<div class="col">
-				<div class="pin"></div>
 				<img src="Educational/az104.png" alt="Microsoft Certified: Azure Administrator Associate">
 				<div class="cert-divider"></div>
 				<div class="layer">
 					<h3>Microsoft Certified: Azure Administrator Associate</h3>
-					<span class="link">
-						<a href="https://learn.microsoft.com/api/credentials/share/en-gb/RahulTimbaliya-6658/E66C425CF395A419?sharingId=4BDF7C8F4DFEA30A"
-							target="_blank" aria-label="View Certificate">
-							<i class='bx bx-link'></i>
-						</a>
-					</span>
+					<span class="link"><a
+							href="https://learn.microsoft.com/api/credentials/share/en-gb/RahulTimbaliya-6658/E66C425CF395A419?sharingId=4BDF7C8F4DFEA30A"
+							target="_blank" aria-label="View Certificate"><i class='bx bx-link-external'></i></a></span>
 				</div>
 			</div>
-
 			<div class="col">
-				<div class="pin"></div>
 				<img src="Educational/FundamentalOfDegitalMarketing.png" alt="Digital Marketing Certificate">
 				<div class="cert-divider"></div>
 				<div class="layer">
 					<h3>Fundamentals of Digital Marketing</h3>
-					<span class="link">
-						<a href="https://drive.google.com/file/d/1JCfp_tei2L3EScjZnFIfYBeI1TGfKugr/view?usp=sharing"
-							target="_blank" aria-label="View Certificate">
-							<i class='bx bx-link'></i>
-						</a>
-					</span>
+					<span class="link"><a
+							href="https://drive.google.com/file/d/1JCfp_tei2L3EScjZnFIfYBeI1TGfKugr/view?usp=sharing"
+							target="_blank" aria-label="View Certificate"><i class='bx bx-link-external'></i></a></span>
 				</div>
 			</div>
-
 			<div class="col">
-				<div class="pin"></div>
 				<img src="Educational/Hackerrank Python Basic.png" alt="Python Basic Certificate">
 				<div class="cert-divider"></div>
 				<div class="layer">
 					<h3>HackerRank Python (Basic)</h3>
-					<span class="link">
-						<a href="https://www.hackerrank.com/certificates/34a93d293a45" target="_blank"
-							aria-label="View Certificate">
-							<i class='bx bx-link'></i>
-						</a>
-					</span>
+					<span class="link"><a href="https://www.hackerrank.com/certificates/34a93d293a45" target="_blank"
+							aria-label="View Certificate"><i class='bx bx-link-external'></i></a></span>
 				</div>
 			</div>
-
 			<div class="col">
-				<div class="pin"></div>
 				<img src="Educational/Sololearn PHP-Certificate.png" alt="PHP Certificate">
 				<div class="cert-divider"></div>
 				<div class="layer">
 					<h3>Sololearn PHP Certificate</h3>
-					<span class="link">
-						<a href="https://api2.sololearn.com/v2/certificates/CT-JGS6DVMY/image/png" target="_blank"
-							aria-label="View Certificate">
-							<i class='bx bx-link'></i>
-						</a>
-					</span>
+					<span class="link"><a href="https://api2.sololearn.com/v2/certificates/CT-JGS6DVMY/image/png"
+							target="_blank" aria-label="View Certificate"><i class='bx bx-link-external'></i></a></span>
 				</div>
 			</div>
-
 			<div class="col">
-				<div class="pin"></div>
 				<img src="Educational/Cyber-Security Certificate MEIT.png" alt="Cyber Security Certificate">
 				<div class="cert-divider"></div>
 				<div class="layer">
 					<h3>Cyber Security Certificate MEIT</h3>
-					<span class="link">
-						<a href="https://infosecawareness.in/validate-certificate?certid=MeitY/ISEA/WCHP/021059"
-							target="_blank" aria-label="View Certificate">
-							<i class='bx bx-link'></i>
-						</a>
-					</span>
+					<span class="link"><a
+							href="https://infosecawareness.in/validate-certificate?certid=MeitY/ISEA/WCHP/021059"
+							target="_blank" aria-label="View Certificate"><i class='bx bx-link-external'></i></a></span>
 				</div>
 			</div>
-
 			<div class="col">
-				<div class="pin"></div>
 				<img src="Educational/Hewlett Packard Enterprise completion certificate.png"
 					alt="HP Enterprise Certificate">
 				<div class="cert-divider"></div>
 				<div class="layer">
 					<h3>Software Engineering Virtual Experience Program</h3>
-					<span class="link">
-						<a href="https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/Hewlett%20Packard%20Enterprise%20/da2T3WZCbMAJD7bNB_Hewlett%20Packard%20Enterprise_biQYh8jxMkcDCSCM8_1667323251393_completion_certificate.pdf"
-							target="_blank" aria-label="View Certificate">
-							<i class='bx bx-link'></i>
-						</a>
-					</span>
+					<span class="link"><a
+							href="https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/Hewlett%20Packard%20Enterprise%20/da2T3WZCbMAJD7bNB_Hewlett%20Packard%20Enterprise_biQYh8jxMkcDCSCM8_1667323251393_completion_certificate.pdf"
+							target="_blank" aria-label="View Certificate"><i class='bx bx-link-external'></i></a></span>
 				</div>
 			</div>
-
 			<div class="col">
-				<div class="pin"></div>
 				<img src="Educational/Master-Craft Certificate TCS.png" alt="TCS Certificate">
 				<div class="cert-divider"></div>
 				<div class="layer">
 					<h3>TCS MasterCraft DataPlus</h3>
-					<span class="link">
-						<a href="https://g05.tcsion.com/per/g05/pub/31374/LX/batch-participants-report/31374/146490/Rahul_Timbaliya_4387.pdf"
-							target="_blank" aria-label="View Certificate">
-							<i class='bx bx-link'></i>
-						</a>
-					</span>
+					<span class="link"><a
+							href="https://g05.tcsion.com/per/g05/pub/31374/LX/batch-participants-report/31374/146490/Rahul_Timbaliya_4387.pdf"
+							target="_blank" aria-label="View Certificate"><i class='bx bx-link-external'></i></a></span>
 				</div>
 			</div>
-
 			<div class="col">
-				<div class="pin"></div>
 				<img src="Educational/Dr.Subhash Demystifying the Buzzwords in AI_ML Webinar Certificate.png"
 					alt="AI ML Webinar Certificate">
 				<div class="cert-divider"></div>
 				<div class="layer">
 					<h3>Demystifying the Buzzwords in AI/ML Webinar</h3>
-					<span class="link">
-						<a href="Educational/pdf/Dr.Subhash Demystifying the Buzzwords in AI_ML Webinar Certificate.pdf"
-							download aria-label="Download Certificate">
-							<i class='bx bx-link'></i>
-						</a>
-					</span>
+					<span class="link"><a
+							href="Educational/pdf/Dr.Subhash Demystifying the Buzzwords in AI_ML Webinar Certificate.pdf"
+							download aria-label="Download Certificate"><i class='bx bx-download'></i></a></span>
 				</div>
 			</div>
-
 			<div class="col">
-				<div class="pin"></div>
 				<img src="Educational/Dr.Subhash Python for Data Science Webinar Certificate.png"
 					alt="Python Data Science Certificate">
 				<div class="cert-divider"></div>
 				<div class="layer">
 					<h3>Python for Data Science Webinar</h3>
-					<span class="link">
-						<a href="Educational/pdf/Dr.Subhash Python for Data Science Webinar Certificate.pdf" download
-							aria-label="Download Certificate">
-							<i class='bx bx-link'></i>
-						</a>
-					</span>
+					<span class="link"><a
+							href="Educational/pdf/Dr.Subhash Python for Data Science Webinar Certificate.pdf" download
+							aria-label="Download Certificate"><i class='bx bx-download'></i></a></span>
 				</div>
 			</div>
-
 			<div class="col">
-				<div class="pin"></div>
 				<img src="Educational/G3Q Certificate.png" alt="G3Q Certificate">
 				<div class="cert-divider"></div>
 				<div class="layer">
 					<h3>G3Q Certificate</h3>
-					<span class="link">
-						<a href="Educational/pdf/G3Q Certificate.pdf" download aria-label="Download Certificate">
-							<i class='bx bx-link'></i>
-						</a>
-					</span>
+					<span class="link"><a href="Educational/pdf/G3Q Certificate.pdf" download
+							aria-label="Download Certificate"><i class='bx bx-download'></i></a></span>
 				</div>
 			</div>
-
 			<div class="col">
-				<div class="pin"></div>
 				<img src="Educational/ENERGY LITERACY TRAINING.png" alt="Energy Literacy Certificate">
 				<div class="cert-divider"></div>
 				<div class="layer">
 					<h3>Energy Literacy Training</h3>
-					<span class="link">
-						<a href="Educational/pdf/ENERGY LITERACY TRAINING.pdf" download
-							aria-label="Download Certificate">
-							<i class='bx bx-link'></i>
-						</a>
-					</span>
+					<span class="link"><a href="Educational/pdf/ENERGY LITERACY TRAINING.pdf" download
+							aria-label="Download Certificate"><i class='bx bx-download'></i></a></span>
 				</div>
 			</div>
 		</div>
@@ -544,116 +522,125 @@
 	<!-- Projects Section -->
 	<section class="service" id="service">
 		<div class="heading">
-			<h3>Projects</h3>
-			<div class="service-content">
-				<div class="row">
-					<h3>Tour Management System</h3>
-					<h5>Technology Stack<br>Front-End: HTML, CSS, Bootstrap, JavaScript<br>Back-End: Python (Django),
-						MySQL, SQLite3 (Database)</h5>
-					<p>This is my BCA Semester 6 academic project based on Python (Django) featuring the following
-						capabilities:</p>
-					<p><i class='bx bxs-square-rounded'></i> Gmail Authentication Integration</p>
-					<p><i class='bx bxs-square-rounded'></i> Google reCAPTCHA Security</p>
-					<p><i class='bx bxs-square-rounded'></i> Paytm Payment Gateway Integration</p>
-					<p><i class='bx bxs-square-rounded'></i> Client-Side & Admin-Side Modules</p>
-					<p>(For more details, please visit GitHub)</p>
+			<p class="eyebrow"># 04 — selected work</p>
+			<h3>projects/</h3>
+			<p>A few things I've built, from academic systems to weekend tools</p>
+		</div>
+		<div class="service-content">
+			<div class="row">
+				<div class="repo-head"><i class='bx bx-folder-open'></i>
+					<h3>tour-management-system</h3>
+				</div>
+				<h5>Front-end: HTML · CSS · Bootstrap · JavaScript &nbsp;|&nbsp; Back-end: Python (Django) · MySQL ·
+					SQLite3</h5>
+				<p>BCA Semester 6 academic project — a full booking platform with:</p>
+				<p><i class='bx bxs-square-rounded'></i> Gmail authentication integration</p>
+				<p><i class='bx bxs-square-rounded'></i> Google reCAPTCHA security</p>
+				<p><i class='bx bxs-square-rounded'></i> Paytm payment gateway integration</p>
+				<p><i class='bx bxs-square-rounded'></i> Client-side & admin-side modules</p>
+				<div class="repo-links">
 					<a href="https://github.com/Rahultimbaliya14/BCA-SEM6_project" class="projectlink" target="_blank"
-						aria-label="View on GitHub">
-						<i class='bx bxl-github'></i>
-					</a>
-				</div>
-
-				<div class="row">
-					<h3>Zoo Management System</h3>
-					<h5>Technology Stack<br>Front-End: HTML, CSS, Bootstrap, JavaScript<br>Back-End: PHP, MySQL
-						(Database)</h5>
-					<p>This is my BCA Semester 5 academic project based on PHP featuring the following capabilities:</p>
-					<p><i class='bx bxs-square-rounded'></i> Gmail Authentication Integration</p>
-					<p><i class='bx bxs-square-rounded'></i> Client-Side & Admin-Side Modules</p>
-					<p>(For more details, please visit GitHub)</p>
-					<a href="https://github.com/Rahultimbaliya14/Project_BCA_5" class="projectlink" target="_blank"
-						aria-label="View on GitHub">
-						<i class='bx bxl-github'></i>
-					</a>
-				</div>
-
-				<div class="row">
-					<h3>Date Finder</h3>
-					<h5>Technology Stack<br>Front-End: HTML, CSS, Bootstrap, JavaScript</h5>
-					<p>Created for study purposes and interview preparation, featuring the following capabilities:</p>
-					<p><i class='bx bxs-square-rounded'></i> Find Day Between Two Dates</p>
-					<p><i class='bx bxs-square-rounded'></i> Interactive Modal Interface</p>
-					<p>(For more details, please visit GitHub)</p>
-					<a href="https://github.com/Rahultimbaliya14/Date-Finder" class="projectlink" target="_blank"
-						aria-label="View on GitHub">
-						<i class='bx bxl-github'></i>
-					</a>
-					<a href="https://rahultimbaliya14.github.io/Date-Finder/" class="projectlink" target="_blank"
-						aria-label="Live Demo">
-						<i class='bx bx-link'></i>
-					</a>
-				</div>
-
-				<div class="row">
-					<h3>Analog Clock with Timer</h3>
-					<h5>Technology Stack<br>Front-End: HTML, CSS, Bootstrap, JavaScript</h5>
-					<p>Created for study purposes and personal interest, featuring the following capabilities:</p>
-					<p><i class='bx bxs-square-rounded'></i> Analog Clock with Date, Time & Day Display</p>
-					<p><i class='bx bxs-square-rounded'></i> Countdown Timer Functionality</p>
-					<p>(For more details, please visit GitHub)</p>
-					<a href="https://github.com/Rahultimbaliya14/Analog-Clock" class="projectlink" target="_blank"
-						aria-label="View on GitHub">
-						<i class='bx bxl-github'></i>
-					</a>
-					<a href="https://rahultimbaliya14.github.io/Analog-Clock" class="projectlink" target="_blank"
-						aria-label="Live Demo">
-						<i class='bx bx-link'></i>
-					</a>
-				</div>
-
-				<div class="row">
-					<h3>Random Image Finder</h3>
-					<h5>Technology Stack<br>Front-End: HTML, CSS, Bootstrap, JavaScript</h5>
-					<p>Created for study purposes and personal interest, featuring the following capabilities:</p>
-					<p><i class='bx bxs-square-rounded'></i> Random Image Search Based on Keywords</p>
-					<p><i class='bx bxs-square-rounded'></i> High-Quality Image Downloads</p>
-					<p>(For more details, please visit GitHub)</p>
-					<a href="https://github.com/Rahultimbaliya14/Img_d_p" class="projectlink" target="_blank"
-						aria-label="View on GitHub">
-						<i class='bx bxl-github'></i>
-					</a>
-					<a href="https://rahultimbaliya14.github.io/Img_d_p" class="projectlink" target="_blank"
-						aria-label="Live Demo">
-						<i class='bx bx-link'></i>
-					</a>
+						aria-label="View on GitHub"><i class='bx bxl-github'></i></a>
 				</div>
 			</div>
+
+			<div class="row">
+				<div class="repo-head"><i class='bx bx-folder-open'></i>
+					<h3>zoo-management-system</h3>
+				</div>
+				<h5>Front-end: HTML · CSS · Bootstrap · JavaScript &nbsp;|&nbsp; Back-end: PHP · MySQL</h5>
+				<p>BCA Semester 5 academic project featuring:</p>
+				<p><i class='bx bxs-square-rounded'></i> Gmail authentication integration</p>
+				<p><i class='bx bxs-square-rounded'></i> Client-side & admin-side modules</p>
+				<div class="repo-links">
+					<a href="https://github.com/Rahultimbaliya14/Project_BCA_5" class="projectlink" target="_blank"
+						aria-label="View on GitHub"><i class='bx bxl-github'></i></a>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="repo-head"><i class='bx bx-folder-open'></i>
+					<h3>date-finder</h3>
+				</div>
+				<h5>Front-end: HTML · CSS · Bootstrap · JavaScript</h5>
+				<p>Built for study and interview prep, featuring:</p>
+				<p><i class='bx bxs-square-rounded'></i> Find the day between two dates</p>
+				<p><i class='bx bxs-square-rounded'></i> Interactive modal interface</p>
+				<div class="repo-links">
+					<a href="https://github.com/Rahultimbaliya14/Date-Finder" class="projectlink" target="_blank"
+						aria-label="View on GitHub"><i class='bx bxl-github'></i></a>
+					<a href="https://rahultimbaliya14.github.io/Date-Finder/" class="projectlink" target="_blank"
+						aria-label="Live Demo"><i class='bx bx-link-external'></i></a>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="repo-head"><i class='bx bx-folder-open'></i>
+					<h3>analog-clock</h3>
+				</div>
+				<h5>Front-end: HTML · CSS · Bootstrap · JavaScript</h5>
+				<p>Built for study and personal interest, featuring:</p>
+				<p><i class='bx bxs-square-rounded'></i> Analog clock with date, time & day display</p>
+				<p><i class='bx bxs-square-rounded'></i> Countdown timer functionality</p>
+				<div class="repo-links">
+					<a href="https://github.com/Rahultimbaliya14/Analog-Clock" class="projectlink" target="_blank"
+						aria-label="View on GitHub"><i class='bx bxl-github'></i></a>
+					<a href="https://rahultimbaliya14.github.io/Analog-Clock" class="projectlink" target="_blank"
+						aria-label="Live Demo"><i class='bx bx-link-external'></i></a>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="repo-head"><i class='bx bx-folder-open'></i>
+					<h3>random-image-finder</h3>
+				</div>
+				<h5>Front-end: HTML · CSS · Bootstrap · JavaScript</h5>
+				<p>Built for study and personal interest, featuring:</p>
+				<p><i class='bx bxs-square-rounded'></i> Random image search based on keywords</p>
+				<p><i class='bx bxs-square-rounded'></i> High-quality image downloads</p>
+				<div class="repo-links">
+					<a href="https://github.com/Rahultimbaliya14/Img_d_p" class="projectlink" target="_blank"
+						aria-label="View on GitHub"><i class='bx bxl-github'></i></a>
+					<a href="https://rahultimbaliya14.github.io/Img_d_p" class="projectlink" target="_blank"
+						aria-label="Live Demo"><i class='bx bx-link-external'></i></a>
+				</div>
+			</div>
+		</div>
 	</section>
 
 	<!-- Contact Section -->
 	<section class="cta" id="con">
 		<div class="heading">
-			<h3>Contact</h3>
-			<p>Get In Touch<br>Let's Connect</p>
+			<p class="eyebrow"># 05 — get in touch</p>
+			<h3>contact.sh</h3>
+			<p>Let's build something together</p>
+		</div>
+
+		<div class="terminal-block">
+			<div class="editor-titlebar">
+				<span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
+				<span class="editor-filename">contact.sh</span>
+			</div>
+			<div class="terminal-body">
+				<p><span class="prompt-sign">$</span> ./contact.sh --reach-out</p>
+			</div>
 		</div>
 
 		<div class="cta-box">
 			<div class="wrap">
-				<h3>Email <i class='bx bxl-gmail'></i></h3>
+				<h3><i class='bx bxl-gmail'></i> Email</h3>
 				<a href="mailto:rahultimbaliya555@gmail.com">
 					<p>rahultimbaliya555@gmail.com</p>
 				</a>
 			</div>
-
 			<div class="wrap">
-				<h3>WhatsApp <i class='bx bxl-whatsapp'></i></h3>
+				<h3><i class='bx bxl-whatsapp'></i> WhatsApp</h3>
 				<a href="https://wa.me/+916353647592?text=Hi Beautiful Portfolio" target="_blank">
 					<p>+91 6353647592</p>
 				</a>
 			</div>
-
 			<div class="wrap">
-				<h3>Mobile <i class='bx bxs-phone'></i></h3>
+				<h3><i class='bx bxs-phone'></i> Mobile</h3>
 				<p>+91 6353647592</p>
 			</div>
 		</div>
@@ -662,25 +649,26 @@
 	<!-- Feedback Section -->
 	<section class="feedback" id="feedback">
 		<div class="heading">
-			<h3>Feedback</h3>
-			<p>Share Your Thoughts<br>Your Opinion Matters</p>
+			<p class="eyebrow"># 06 — open an issue</p>
+			<h3>feedback.md</h3>
+			<p>Share your thoughts — your input helps shape what I build next</p>
 		</div>
 
 		<div class="feedback-container">
 			<form class="feedback-form" id="feedbackForm">
 				<div class="form-group">
-					<label for="feedbackEmail">Email Address</label>
-					<input type="email" id="feedbackEmail" name="email" placeholder="Enter your email address">
+					<label for="feedbackEmail">Email address</label>
+					<input type="email" id="feedbackEmail" name="email" placeholder="you@example.com">
 				</div>
-
 				<div class="form-group">
-					<label for="feedbackMessage">Your Feedback</label>
-					<textarea id="feedbackMessage" name="feedback" placeholder="Share your thoughts, suggestions, or feedback about my portfolio..." rows="6"></textarea>
+					<label for="feedbackMessage">Your feedback</label>
+					<textarea id="feedbackMessage" name="feedback"
+						placeholder="Share your thoughts, suggestions, or feedback about my portfolio..."
+						rows="6"></textarea>
 				</div>
-
 				<div class="form-buttons">
 					<button type="button" class="btn clear-btn" onclick="clearFeedbackForm()">Clear</button>
-					<button type="submit" class="btn submit-btn">Submit Feedback</button>
+					<button type="submit" class="btn submit-btn">Submit feedback</button>
 				</div>
 			</form>
 		</div>
@@ -688,7 +676,7 @@
 
 	<!-- Footer -->
 	<div class="ends">
-		<p>Designed and Developed by Rahul Timbaliya 2023</p>
+		<p><span class="prompt-sign">$</span> echo "Designed &amp; developed by Rahul Timbaliya, 2023–2026"</p>
 	</div>
 
 	<!-- Back to Top -->
@@ -696,8 +684,8 @@
 		<span class="arrow-up">↑</span>
 	</a>
 
-
 	<script src="https://unpkg.com/scrollreveal"></script>
 	<script type="text/javascript" src="js/script.js"></script>
 </body>
+
 </html>
