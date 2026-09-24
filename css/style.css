@@ -747,16 +747,31 @@ section {
    About — "about.log"
    ========================================================================== */
 
+.sub-service .heading {
+	margin-left: 0;
+	margin-right: auto;
+	text-align: left;
+	width: 100%;
+	max-width: 640px;
+}
+
 .about {
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
+	display: block;
+	width: 100%;
 }
 
 .about .heading {
-	margin-left: auto;
+	margin-left: 0;
 	margin-right: auto;
-	text-align: center;
+	text-align: left;
+	width: 100%;
+	max-width: 640px;
+}
+
+.about .heading .eyebrow,
+.about .heading h3,
+.about .heading p {
+	text-align: left;
 }
 
 .about-content {
